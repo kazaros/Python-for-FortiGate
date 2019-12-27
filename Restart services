@@ -1,0 +1,30 @@
+#https://networksareawesome.com/python-for-network-engineers/python-script-library/fortinet-python-library/fortigate-configuration-backup/
+#
+#!/usr/bin/python
+from netmiko import ConnectHandler
+from netmiko.ssh_exception import NetMikoTimeoutException
+from paramiko.ssh_exception import SSHException
+from netmiko.ssh_exception import AuthenticationException
+from netmiko.fortinet import FortinetSSH
+import time
+
+device1 = {
+        'device_type': 'fortinet',
+        'ip': '10.78.16.6',
+        'username': 'admin',
+        'password': 'admin',
+}
+
+all_devices = [device1]
+
+for device in all_devices:
+    net_connect = ConnectHandler(**device)
+    prompt = net_connect.find_prompt()
+    time.sleep(2)
+    net_connect.send_config_set('config global')
+    time.sleep(2)
+    net_connect.send_config_set('diag test app wad 99')
+    time.sleep(2)
+    net_connect.send_config_set('diag test app ipsmonitor 99')
+    time.sleep(2)
+    net_connect.disconnect()
