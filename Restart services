@@ -1,6 +1,6 @@
+#!/usr/bin/python
 #https://networksareawesome.com/python-for-network-engineers/python-script-library/fortinet-python-library/fortigate-configuration-backup/
 #
-#!/usr/bin/python
 from netmiko import ConnectHandler
 from netmiko.ssh_exception import NetMikoTimeoutException
 from paramiko.ssh_exception import SSHException
